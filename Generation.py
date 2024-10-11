@@ -12,22 +12,20 @@ def make_rag_prompt(query, relevant_passage):
   if isinstance(relevant_passage, list) and len(relevant_passage) > 0:
         # Lấy đoạn văn bản đầu tiên từ danh sách
         relevant_passage = relevant_passage[0]  # Lấy đoạn văn đầu tiên
-        a = [relevant_passage]
-        escaped=re.split(r'\?\s*Answer:\s*', a[0])
-        # print(escaped[1])
-        
+        # a = [relevant_passage]
+        # escaped=re.split(r'\?\s*Answer:\s*', a[0])
+        # print(escaped)
+        print(relevant_passage)
 
-  prompt = ("""You are a helpful and informative bot that answers questions using text from the reference passage included below. \
-  Be sure to respond in a complete sentence, being comprehensive, including all relevant background information. \
-  However, you are talking to a non-technical audience, so be sure to break down complicated concepts and \
-  strike a friendly and converstional tone. \
-  If the passage is irrelevant to the answer, you may ignore it.
+  prompt = ("""bạn sẽ là nhân viên ngân hàng để hỗ trợ người dùng với câu hỏi Question 
+  bạn có thể tham khảo cách trả lời từ passage nếu thông tin tham \
+  khảo hữu ích cho câu trả lời thì  bạn hãy kết hợp câu trả lời và thông tin liên quan bên ngoài để trả lời một cách dễ hiểu nhất cho người dùng.\
+  nếu tài liệu tham khảo passage không giúp ích cho câu trả lời thì bạn tìm thông tin liên quan bên ngoài và trả lời câu hỏi một cách dễ hiểu cho người dùng.\
+  trong trường hợp thông tin tham khảo  cung cấp không liên quan đến câu hỏi của thì bạn có thể  tự trả lời một cách dễ hiểu để hoàn thành câu trả lời.
   QUESTION: '{query}'
   PASSAGE: '{relevant_passage}'
-
-  ANSWER:
-  """).format(query=query, relevant_passage=escaped[1])
-#   print(prompt)
+  """).format(query=query, relevant_passage=relevant_passage)
+  # print(prompt)
   return prompt
 # Giả sử bạn đã có db từ hàm load_chroma_collection
 # db = load_chroma_collection(path="/home/anh/rag/chroma_db", name="rag_experiment")

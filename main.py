@@ -31,5 +31,5 @@ db = load_chroma_collection(path="/home/anh/Downloads/testcsv/chroma_db",  # rep
                             name="rag_experiment_v2")  # replace with the collection name
 
 # Generate answer for the query
-answer = generate_answer(db, query="Tôi có thể thực hiện đổi mã PIN ?")
+answer = generate_answer(db, query="làm sao để gia vị món canh thêm đậm đà?")
 print(answer)
